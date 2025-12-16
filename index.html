@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VectorShift Pipeline Editor</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reactflow@11.11.4/dist/style.css" />
+    <script>
+      // 1. Error Trap to visualize crashes
+      window.addEventListener('error', function(event) {
+        const errorDiv = document.createElement('div');
+        errorDiv.style.position = 'fixed';
+        errorDiv.style.top = '0';
+        errorDiv.style.left = '0';
+        errorDiv.style.width = '100%';
+        errorDiv.style.backgroundColor = '#fee2e2';
+        errorDiv.style.color = '#991b1b';
+        errorDiv.style.padding = '1rem';
+        errorDiv.style.zIndex = '9999';
+        errorDiv.style.borderBottom = '1px solid #ef4444';
+        errorDiv.style.fontFamily = 'monospace';
+        errorDiv.textContent = 'Application Error: ' + event.message;
+        document.body.appendChild(errorDiv);
+        console.error(event.error);
+      });
+
+      // 2. Shim process.env for the provided API key
+      // Merging with existing process if defined to avoid breaking other tools
+      window.process = window.process || {};
+      window.process.env = window.process.env || {};
+      window.process.env.API_KEY = 'AIzaSyDOR-2zybyqwK1iFu0qfsL-jQoNrHC5J-Q';
+
+      // 3. Tailwind config
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#6366f1',
+              secondary: '#a855f7',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* React Flow Customizations for Tailwind compatibility */
+      .react-flow__handle {
+        width: 10px;
+        height: 10px;
+        background-color: #6366f1;
+      }
+      .react-flow__node {
+        border: none;
+        background: transparent;
+        padding: 0;
+      }
+      /* CRITICAL: Ensure the app takes full height */
+      html, body, #root {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/": "https://esm.sh/react@18.3.1/",
+    "react-dom": "https://esm.sh/react-dom@18.3.1",
+    "react-dom/": "https://esm.sh/react-dom@18.3.1/",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.263.1?external=react",
+    "reactflow": "https://esm.sh/reactflow@11.11.4?external=react,react-dom"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

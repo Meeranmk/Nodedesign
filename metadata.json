@@ -1,0 +1,5 @@
+{
+  "name": "VectorShift Pipeline Editor",
+  "description": "A powerful node-based pipeline editor featuring dynamic text nodes, modular architecture, and backend integration for DAG validation.",
+  "requestFramePermissions": []
+}
